@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GEO EXP</title>
+  </head>
+  <body>
+      <div id="container"></div>
+      <script type="text/javascript">
+      // call API via XMLHttpRequest
+      const mapUri="https://maps.googleapis.com/maps/api/geocode/json?latlng=47.6098048,-122.33480189999999&key=AIzaSyCCnlJcyMGgV7bxyBpvHbKvm9-8AFBHIOY"
+
+      let request = new XMLHttpRequest()
+      request.open("GET", mapUri, true)
+      request.onload = onloadFunc
+      request.onerror = onerrorFunc
+      request.send ();
+
+      // onload callback
+      function onloadFunc(){
+        console.log(JSON.parse(request.response));
+        if (reponse.results.length > 0) {
+          document.getElementsById("container").innerHTML = response.results[0].formatted_address
+        }
+        // print first results formatted addres to page
+        // response status?
+      }
+
+    function  onerrorFunc (){
+      // onerror callback
+      console.log("ya screwed up,kid.")
+    }
+    </script>
+  </body>
+</html>
